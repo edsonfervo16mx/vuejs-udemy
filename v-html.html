@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>v-if</title>
+    <title>v-html</title>
 </head>
 <body>
     <main id="app">
-        <input type="number" v-model="datos">
-        <h1 v-show="datos == 1"> El dia es muy nublado</h1>
+        <h1 v-text="texto"></h1>
+        <div v-html="codigoHTML"></div>
     </main>
-    <h1></h1>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         const app = new Vue({
             el: "#app",
             data:{
-                datos: 0
+                texto: 'Soy un texto inyectado con vue',
+                codigoHTML : '<h1><i>Soy un texto con codigo html</i></h1>'
             }
         });
     </script>

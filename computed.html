@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .femenino{
+            color:pink;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 25px;
+            font-weight: bolder;
+        }
+        .masculino{
+            color:blue;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <main id="app">
+        <h2>Escribe tu edad</h2>
+        <input type="number" v-model="edad">
+        <div v-html="rangoEdad"></div>
+        <label :class="genero">{{concatenacion}}</label>
+        <br>
+        <input type="radio" v-model="gen" value="f">Femenino
+        <input type="radio" v-model="gen" value="m">Masculino
+        <br>
+        <p :style="estilo">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor voluptates quas nobis sapiente quis. Minima hic labore nobis, ipsum recusandae iusto asperiores est impedit sit veniam ducimus dolorum voluptatum repellendus.
+        </p>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data:{
+                edad: 0,
+                nombre: 'Edson',
+                apellidoPaterno: 'Ventura',
+                apellidoMaterno: 'Oropeza',
+                gen:'f'
+            },
+            computed:{
+                rangoEdad: function(){
+                    //return this.edad >= 18 ? '<h1>Eres mayor de edad</h1>' : '<h2>Eres menor de edad</h2>';
+                    if(this.edad >= 18){
+                        return '<h1>Eres mayor de edad</h1>';
+                    }else{
+                        return '<h2>Eres menor de edad</h2>';
+                    }
+                },
+                concatenacion: function(){
+                    return this.nombre+ ' '+this.apellidoPaterno+' '+this.apellidoPaterno;
+                },
+                genero: function(){
+                    return this.gen == 'f' ? 'femenino' : 'masculino';
+                },
+                estilo: function(){
+                    //width:300px; font-size:20px;color:chocolate;text-align:justify
+                    return {
+                        width: '300px',
+                        fontSize: '20px',
+                        color: 'chocolate',
+                        textAlign: 'justify'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
