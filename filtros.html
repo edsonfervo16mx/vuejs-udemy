@@ -13,9 +13,10 @@
                 <li v-for="item in datos">{{item.name}}</li>
             </ul>
         -->
+        <input type="text" v-model="buscar" placeholder="Buscador" size="50">
         <table>
             <th v-for="campo in campos">{{campo | capitalize}}</th>
-            <tr v-for="item in datos">
+            <tr v-for="item in datosfiltrados">
                 <td>{{item.name.toUpperCase()}}</td>
                 <td>{{item.email.toLowerCase()}}</td>
                 <td>{{item.address.city}}</td>
@@ -44,7 +45,8 @@
                 datos:[],
                 campos:['nombre','email','ciudad','localizacion','precio'],
                 precio:1234,
-                texto:'lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium fugit ut voluptatum fugiat nam a at iste. Perferendis maxime voluptatum, sed odit optio unde ipsam, inventore reiciendis quis iste vero.'
+                texto:'lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium fugit ut voluptatum fugiat nam a at iste. Perferendis maxime voluptatum, sed odit optio unde ipsam, inventore reiciendis quis iste vero.', 
+                buscar: ''
             },
             methods:{
                 usuarios(){
@@ -55,6 +57,13 @@
             },
             created(){
                 this.usuarios();
+            },
+            computed:{
+                datosfiltrados(){
+                    return this.datos.filter((filtro)=>{
+                        return filtro.name.toUpperCase().match(this.buscar.toUpperCase()) || filtro.email.toUpperCase().match(this.buscar.toUpperCase());
+                    })
+                }
             }
         });
     </script>
